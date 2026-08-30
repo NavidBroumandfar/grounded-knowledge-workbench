@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "corpus": "Asteria Pump Systems training corpus",
+  "roles": ["reader", "engineer", "reviewer"],
+  "documents": [
+    {
+      "id": "operations-overview",
+      "title": "Operations Overview",
+      "path": "operations-overview.md",
+      "provenance": "synthetic",
+      "roles": ["reader", "engineer", "reviewer"]
+    },
+    {
+      "id": "maintenance-runbook",
+      "title": "Maintenance Runbook",
+      "path": "maintenance-runbook.md",
+      "provenance": "synthetic",
+      "roles": ["engineer", "reviewer"]
+    },
+    {
+      "id": "review-register",
+      "title": "Review Register",
+      "path": "review-register.md",
+      "provenance": "synthetic",
+      "roles": ["reviewer"]
+    }
+  ]
+}

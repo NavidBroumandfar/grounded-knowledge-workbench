@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "grounded-knowledge-workbench"
+version = "0.1.0"
+description = "Deterministic foundation for a local-first knowledge workbench"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+  { name = "Navid Broumandfar" },
+]
+keywords = ["applied-ai", "evaluation", "knowledge-engineering", "local-first", "rag"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://navidbr.me"
+Repository = "https://github.com/NavidBroumandfar/grounded-knowledge-workbench"
+Issues = "https://github.com/NavidBroumandfar/grounded-knowledge-workbench/issues"
+
+[project.scripts]
+gkw = "grounded_knowledge_workbench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+grounded_knowledge_workbench = [
+  "resources/synthetic/*.json",
+  "resources/synthetic/*.md",
+]

@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: "0.11.18"
+          enable-cache: true
+
+      - name: Install locked environment
+        run: uv sync --locked
+
+      - name: Run unit tests
+        run: uv run python -m unittest discover -s tests -v
+
+      - name: Verify command-line evidence surface
+        run: uv run gkw status --json
+
+      - name: Build distribution
+        run: uv build
+
+      - name: Smoke-test installed wheel
+        run: |
+          smoke_root=$(mktemp -d)
+          python -m venv "$smoke_root/venv"
+          "$smoke_root/venv/bin/python" -m pip install --no-deps dist/*.whl
+          cd "$smoke_root"
+          "$smoke_root/venv/bin/gkw" status --json
