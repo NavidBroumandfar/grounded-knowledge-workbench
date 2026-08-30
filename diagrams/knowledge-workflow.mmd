@@ -1,0 +1,10 @@
+flowchart LR
+    A["VALIDATED TODAY<br/>Synthetic corpus | Manifest validation<br/>Path and role policy | Allowed evidence"]
+    B["PLANNED WORKFLOW<br/>Grounded retrieval | Model adapter | Cited draft<br/>Human review | Report and graph | Evaluation evidence"]
+
+    A -.-> B
+
+    classDef validated fill:#0f766e,color:#ffffff,stroke:#134e4a,stroke-width:2px
+    classDef planned fill:#f8fafc,color:#334155,stroke:#64748b,stroke-width:1.5px,stroke-dasharray:5 4
+    class A validated
+    class B planned

@@ -12,7 +12,7 @@ license = "MIT"
 authors = [
   { name = "Navid Broumandfar" },
 ]
-keywords = ["applied-ai", "evaluation", "knowledge-engineering", "local-first", "rag"]
+keywords = ["access-control", "applied-ai", "knowledge-engineering", "local-first", "provenance"]
 classifiers = [
   "Development Status :: 2 - Pre-Alpha",
   "Intended Audience :: Developers",

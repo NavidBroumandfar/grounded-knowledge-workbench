@@ -13,10 +13,7 @@ product. It must remain independently versioned and public-safe.
 
 ## Decision
 
-Create an independent Git repository at:
-
-`/Users/navidbr/Projects/applied-ai-portfolio/agent-products/grounded-knowledge-workbench`
-
+Create an independent Git repository in the portfolio's `agent-products` lane.
 Use **Grounded Knowledge Workbench** as the product name and
 `grounded-knowledge-workbench` as the repository slug. Keep the repository
 local until a separate private-GitHub or public-release decision.
@@ -72,8 +69,6 @@ knowledge format changes.
 - Private source material remains outside the repository.
 - The first implementation must prove deterministic boundaries before adding
   local models or agent frameworks.
-- The portfolio operations index cannot be updated until its unrelated dirty
-  worktree is resolved.
 
 ## Action items
 
