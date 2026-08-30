@@ -8,12 +8,26 @@
 A public-safe, local-first knowledge engineering workbench that treats evidence
 and access policy as prerequisites for model output.
 
-![Validated foundation leading to the planned grounded knowledge workflow](diagrams/knowledge-workflow.svg)
+## Architecture at a glance
 
-Solid teal represents behavior validated today. The dashed panel is the
-explicit roadmap. The visual remains editable through the
-[Mermaid source](diagrams/knowledge-workflow.mmd) or
-[Excalidraw scene](diagrams/knowledge-workflow.excalidraw).
+![End-to-end grounded knowledge workflow with deterministic controls, model boundaries, failure paths, and human approval](diagrams/knowledge-workflow.svg)
+
+The solid teal foundation is validated today. Dashed nodes are the target
+workflow and are not presented as implemented. The diagram makes the critical
+boundary explicit: role and provenance controls determine the allowed evidence
+before any model runs; invalid evidence or citations stop the workflow.
+
+![Governance, evaluation, and repair loop](diagrams/governance-evaluation-loop.svg)
+
+The second view shows ownership and feedback: models may synthesize, critique,
+or judge semantics, while deterministic code owns access, citations, workflow
+state, approval records, and exact metrics. Evaluation failures become a
+prioritized repair backlog, not an automatically approved change.
+
+Editable sources: [workflow Mermaid](diagrams/knowledge-workflow.mmd),
+[workflow Excalidraw](diagrams/knowledge-workflow.excalidraw),
+[governance Mermaid](diagrams/governance-evaluation-loop.mmd), and
+[governance Excalidraw](diagrams/governance-evaluation-loop.excalidraw).
 
 ## What this validates
 

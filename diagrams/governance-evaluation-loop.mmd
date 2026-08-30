@@ -1,0 +1,29 @@
+flowchart TB
+    A["Policy, provenance, and role rules"] --> B["Allowed evidence context"]
+    B --> C["Bounded model synthesis and critique"]
+    C --> D{"Deterministic citations and state valid?"}
+    D -- "No" --> R["Refuse or return for revision"]
+    R --> C
+    D -- "Yes" --> E{"Recorded human decision"}
+    E -- "Revise" --> R
+    E -- "Approve" --> F["Approved artifacts"]
+    F --> G["Deterministic tests and metrics"]
+    F --> H["Semantic judging reported separately"]
+    G --> I["Evaluation report with failures"]
+    H --> I
+    I --> J["Prioritized repair backlog"]
+    J -. "next iteration" .-> A
+
+    classDef control fill:#ecfdf5,color:#134e4a,stroke:#0f766e,stroke-width:2px
+    classDef model fill:#f5f3ff,color:#5b21b6,stroke:#7c3aed,stroke-width:2px
+    classDef gate fill:#fffbeb,color:#92400e,stroke:#d97706,stroke-width:2px
+    classDef failure fill:#fef2f2,color:#991b1b,stroke:#dc2626,stroke-width:2px
+    classDef output fill:#eff6ff,color:#1e3a8a,stroke:#2563eb,stroke-width:2px
+    classDef evaluation fill:#f0f9ff,color:#0c4a6e,stroke:#0284c7,stroke-width:2px
+
+    class A,B,D control
+    class C,H model
+    class E gate
+    class R failure
+    class F output
+    class G,I,J evaluation

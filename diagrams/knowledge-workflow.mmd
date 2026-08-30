@@ -1,10 +1,41 @@
-flowchart LR
-    A["VALIDATED TODAY<br/>Synthetic corpus | Manifest validation<br/>Path and role policy | Allowed evidence"]
-    B["PLANNED WORKFLOW<br/>Grounded retrieval | Model adapter | Cited draft<br/>Human review | Report and graph | Evaluation evidence"]
+flowchart TB
+    subgraph FOUNDATION["1 - VALIDATED TODAY"]
+        direction LR
+        A["Synthetic or public source corpus"] --> B["Manifest, path, and provenance validation"]
+        P["Role policy"] --> C["Allowed source set"]
+        B --> C
+    end
 
-    A -.-> B
+    subgraph TARGET["2 - PLANNED TARGET"]
+        direction TB
+        D["Parse and chunk"] --> E["Knowledge bundle, index, and graph"]
+        Q["Question and caller role"] --> F["Policy-filtered retrieval"]
+        E --> F
+        F --> G{"Valid evidence?"}
+        G -- "No" --> X["Refuse before model call"]
+        G -- "Yes" --> H["Bounded model and agent workflow"]
+        H --> I{"Citations and policy pass?"}
+        I -- "No" --> Y["Reject draft and record failure"]
+        I -- "Yes" --> J["Human approval gate"]
+        J -- "Revise" --> H
+        J -- "Approve" --> K["Cited answer, report, and graph"]
+    end
+
+    C -. "planned handoff" .-> D
 
     classDef validated fill:#0f766e,color:#ffffff,stroke:#134e4a,stroke-width:2px
     classDef planned fill:#f8fafc,color:#334155,stroke:#64748b,stroke-width:1.5px,stroke-dasharray:5 4
-    class A validated
-    class B planned
+    classDef model fill:#f5f3ff,color:#5b21b6,stroke:#7c3aed,stroke-width:1.5px,stroke-dasharray:5 4
+    classDef gate fill:#fffbeb,color:#92400e,stroke:#d97706,stroke-width:1.5px,stroke-dasharray:5 4
+    classDef failure fill:#fef2f2,color:#991b1b,stroke:#dc2626,stroke-width:1.5px,stroke-dasharray:5 4
+    classDef output fill:#eff6ff,color:#1e3a8a,stroke:#2563eb,stroke-width:1.5px,stroke-dasharray:5 4
+
+    class A,B,P,C validated
+    class D,E,Q,F planned
+    class H model
+    class G,I,J gate
+    class X,Y failure
+    class K output
+
+    style FOUNDATION fill:#ecfdf5,stroke:#0f766e,stroke-width:2px
+    style TARGET fill:#ffffff,stroke:#94a3b8,stroke-width:1.5px,stroke-dasharray:7 5
